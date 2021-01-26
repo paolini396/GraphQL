@@ -1,17 +1,18 @@
 import "reflect-metadata";
 import './utils/connection';
-import { buildSchema } from "graphql";
+import { buildSchema } from "type-graphql";
 import { ApolloServer } from 'apollo-server';
+import CategoryResolver from "./graphql/category/CategoryResolver";
 
 const bootstrap = async () => {
 
   const schema = await buildSchema({
-    resolvers: [],
+    resolvers: [CategoryResolver],
   });
 
-  const server = new ApolloServer({schema});
+  const server = new ApolloServer({ schema });
 
-  server.listen({ port: 3336 }, () => console.log('started server!'))
+  server.listen({ port: 3333 }, () => console.log('started server!'))
 }
 
 bootstrap();
